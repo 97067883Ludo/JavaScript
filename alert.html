@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function checkForm() {
+            number = document.getElementById('number').value;
+            if (number<0 || number>10) {
+                alert("Fuckyou");        
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>test</h1>
+    <form action="" method="post">
+        <input type="number" name="number" value="" id="number">
+        <button type="submit"  onclick="checkForm()">verstuur</button>
+    </form>
+</body>
+</html>
