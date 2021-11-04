@@ -1,4 +1,3 @@
-
 punten = 0;
 userClick =0;
 card1Clicked = 0;
@@ -9,6 +8,7 @@ document.getElementById("punten").innerHTML = "Punten: " + punten;
 
 function cardSelected(cardId, cardNummer) {
     document.getElementById(cardNummer).value = cardId;
+    document.getElementById(cardNummer).disabled = true;
     if (userClick == 0) {
     userClick = 1;
     card1ClickedNummer = cardNummer;
@@ -25,6 +25,8 @@ function cardSelected(cardId, cardNummer) {
             card2Clicked = 0;
             document.getElementById(card1ClickedNummer).value = " ";
             document.getElementById(card2ClickedNummer).value = " ";
+            document.getElementById(card2ClickedNummer).disabled = false;
+            document.getElementById(card1ClickedNummer).disabled = false;
         }
     }
     if (punten == 2) {
@@ -42,5 +44,6 @@ function resetGame(params) {
     document.getElementById("punten").innerHTML = "Punten: " + punten;
     for (let i = 1; i <= 4; i++) {
         document.getElementById("kaart" + i).value = " ";
+        document.getElementById("kaart" + i).disabled = false;
     }
 }
