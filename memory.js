@@ -29,7 +29,7 @@ function cardSelected(cardId, cardNummer) {
             document.getElementById(card1ClickedNummer).disabled = false;
         }
     }
-    if (punten == 2) {
+    if (punten == 4) {
         document.getElementById("resetGame").style.display = "block";
     }
 }
@@ -42,8 +42,12 @@ function resetGame(params) {
     card2ClickedNummer =0;
     document.getElementById("resetGame").style.display = "none";
     document.getElementById("punten").innerHTML = "Punten: " + punten;
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 8; i++) {
         document.getElementById("kaart" + i).value = " ";
         document.getElementById("kaart" + i).disabled = false;
     }
+}
+
+function ShuffleCards() {
+    
 }
