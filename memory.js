@@ -34,6 +34,7 @@ function cardSelected(cardId, cardNummer) {
     }
 }
 function resetGame(params) {
+    ShuffleCards()
     punten = 0;
     userClick =0;
     card1Clicked = 0;
@@ -49,5 +50,11 @@ function resetGame(params) {
 }
 
 function ShuffleCards() {
-    
+    var htmlDivStr = "";
+    let elementCount = document.getElementById("count_elements").childElementCount;
+    let numberOfCards = elementCount / 2;
+    for (teller = 0; teller <= numberOfCards; teller++) {
+        randomNumber = Math.floor(Math.random() * 4 + 1);
+        console.log(randomNumber);
+    }
 }
