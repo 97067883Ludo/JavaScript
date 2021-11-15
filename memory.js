@@ -5,9 +5,12 @@ card2Clicked = 0;
 card1ClickedNummer =0;
 card2ClickedNummer =0;
 document.getElementById("punten").innerHTML = "Punten: " + punten;
+card1 = 'images/cow.webp';
+
 
 function cardSelected(cardId, cardNummer) {
-    document.getElementById(cardNummer).value = cardId;
+    
+    document.getElementById(cardNummer).src = 'images/' + cardId + '.webp';
     document.getElementById(cardNummer).disabled = true;
     if (userClick == 0) {
     userClick = 1;
@@ -33,8 +36,8 @@ function cardSelected(cardId, cardNummer) {
         document.getElementById("resetGame").style.display = "block";
     }
 }
-function resetGame(params) {
-    ShuffleCards()
+
+function resetGame() {
     punten = 0;
     userClick =0;
     card1Clicked = 0;
@@ -47,14 +50,33 @@ function resetGame(params) {
         document.getElementById("kaart" + i).value = " ";
         document.getElementById("kaart" + i).disabled = false;
     }
+    ShuffleCards()
 }
 
 function ShuffleCards() {
     var htmlDivStr = "";
-    let elementCount = document.getElementById("count_elements").childElementCount;
-    let numberOfCards = elementCount / 2;
-    for (teller = 0; teller <= numberOfCards; teller++) {
-        randomNumber = Math.floor(Math.random() * 4 + 1);
-        console.log(randomNumber);
+    let numberOfCard = document.getElementById("count_elements").childElementCount;
+    let numberOfCards = numberOfCard / 2;
+    let teller = 0;
+    let kaartTeller = 0;
+    let numbers = new Array();
+    while( teller < numberOfCards) {
+
+        randomNumber = Math.floor(Math.random() * numberOfCards + 1);
+        //console.log(randomNumber);
+
+        if (numbers[randomNumber] != 2) {
+            kaartTeller ++;
+            if (numbers[randomNumber] == 1) {
+                numbers[randomNumber] = '2';
+                htmlDivStr = htmlDivStr + '<input type="button" class="btn btn-card btn-primary" value="'+randomNumber+'" id="kaart'+ kaartTeller +'" onclick="cardSelected('+randomNumber+', \'kaart'+kaartTeller+'\')">';
+                teller++;
+            }else{            
+                numbers[randomNumber] = '1';
+                htmlDivStr = htmlDivStr + '<input type="button" class="btn btn-card btn-primary" value="'+randomNumber+'" id="kaart'+ kaartTeller +'" onclick="cardSelected('+randomNumber+', \'kaart'+kaartTeller+'\')">';
+            }
+        }
     }
+    document.getElementById("count_elements").innerHTML = htmlDivStr;
+    //console.log(numbers);
 }

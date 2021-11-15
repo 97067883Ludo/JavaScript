@@ -1,11 +1,13 @@
 function shuffleCards() {
-    var number = new Array();
+    var numbers = new Array();
     var htmlDivStr = "";
     var teller = 0;
+    var numberOfCards = 8;
 
     while (teller < numberOfCards) {
         var randomNumber = (math.random() * (numberOfCards / 2)) + 1;
         randomNumber = Math.floor(randomNumber);
+        
         if (numbers[randomNumber] != 2) {
             if (numbers[randomNumber] == 1) {
                 numbers[randomNumber] = '2';
