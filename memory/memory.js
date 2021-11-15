@@ -10,7 +10,7 @@ card1 = 'images/cow.webp';
 
 function cardSelected(cardId, cardNummer) {
     
-    document.getElementById(cardNummer).src = 'images/' + cardId + '.webp';
+    document.getElementById(cardNummer).src = 'images/' + cardId + '.png';
     document.getElementById(cardNummer).disabled = true;
     if (userClick == 0) {
     userClick = 1;
@@ -26,8 +26,8 @@ function cardSelected(cardId, cardNummer) {
         }else{
             card1Clicked = 0;
             card2Clicked = 0;
-            document.getElementById(card1ClickedNummer).value = " ";
-            document.getElementById(card2ClickedNummer).value = " ";
+            document.getElementById(card1ClickedNummer).src = "images/default.png";
+            document.getElementById(card2ClickedNummer).src = "images/default.png";
             document.getElementById(card2ClickedNummer).disabled = false;
             document.getElementById(card1ClickedNummer).disabled = false;
         }
@@ -69,11 +69,11 @@ function ShuffleCards() {
             kaartTeller ++;
             if (numbers[randomNumber] == 1) {
                 numbers[randomNumber] = '2';
-                htmlDivStr = htmlDivStr + '<input type="button" class="btn btn-card btn-primary" value="'+randomNumber+'" id="kaart'+ kaartTeller +'" onclick="cardSelected('+randomNumber+', \'kaart'+kaartTeller+'\')">';
+                htmlDivStr = htmlDivStr + '<input type="image" class="btn btn-card btn-primary" value=" " id="kaart'+ kaartTeller +'" src="images/default.png" onclick="cardSelected('+randomNumber+', \'kaart'+kaartTeller+'\')">';
                 teller++;
             }else{            
                 numbers[randomNumber] = '1';
-                htmlDivStr = htmlDivStr + '<input type="button" class="btn btn-card btn-primary" value="'+randomNumber+'" id="kaart'+ kaartTeller +'" onclick="cardSelected('+randomNumber+', \'kaart'+kaartTeller+'\')">';
+                htmlDivStr = htmlDivStr + '<input type="image" class="btn btn-card btn-primary" value=" " id="kaart'+ kaartTeller +'" src="images/default.png" onclick="cardSelected('+randomNumber+', \'kaart'+kaartTeller+'\')">';
             }
         }
     }
