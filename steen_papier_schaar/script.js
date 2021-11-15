@@ -1,65 +1,57 @@
-//speler1 object
-var speler1 = {
-    item: ''
-}
-//played string word naar index.html gestuurd
-var palyedp1 = '';
+// 1: steen
+// 2: papier
+// 3: schaar
 
-
-//speler2 object
-var speler2 = {
-    item: ''
-}
-//played string wordt naar index.html gestuurd
-var palyedp2 = '';
-
-
-//houdt bij welke ronde het is
-ronde = 0;
-
+var userChoice =0;
 function play() {
-    ronde++
-
-    setp1 = Math.floor(Math.random() * 3 + 1)
-    setp2 = Math.floor(Math.random() * 3 + 1)
-    console.log(setp1, setp2)
-    
-    switch (setp1) {
-        case 1:
-            speler1.item = 1
-            palyedp1 = 'Steen'
+    //vraag de user voor input
+    var userInput = prompt("wat speel jij?");
+    //als de gebruiker niks heeft ingevuld return.
+    if (userInput == null) {
+        return;
+    }
+    //zet de user input naar lowercase
+    userInput.toLowerCase();
+    //kijk wat de gebruiker in heeft gevuld
+    switch (userInput) {
+        case 'steen':
+            userChoice = 1;
             break;
-        case 2:
-            speler1.item = 2
-            palyedp1 = 'Papier'
+        case 'papier':
+            userChoice = 2;
             break;
-        case 3:
-            speler1.item = 3
-            palyedp1 = 'Schaar'
+        case 'schaar':
+            userChoice = 3;
+            break;
+        default:
+        alert("niet goed ingevuld, steen, papier, schaar");
+        return;
             break;
     }
 
-    switch (setp2) {
+    //de computer een keuze laten maken
+    var computerChoice = Math.floor(Math.random() * 3 + 1);
+    //maak een vaiabel met de gekozen item als string
+    var computerChoiceString = "";
+    //kijk wat de computer heeft gekozen en zet de string bij de juiste waarde
+    switch (computerChoice) {
         case 1:
-            speler2.item = 1
-            palyedp2 = 'Steen'
+            computerChoiceString = "steen";
             break;
         case 2:
-            speler2.item = 2
-            palyedp2 = 'Papier'
+            computerChoiceString = "papier";
             break;
-        case 3:
-            speler2.item = 3
-            palyedp2 = 'Schaar'
-            break;
+        case 3: 
+            computerChoiceString = "schaar";
+            break; 
     }
 
-    
+    //schrijf alle variabelen naar de index.html
+    document.getElementById("playedp1").innerHTML = userInput + "(" + userChoice + ")";
+    document.getElementById("playedp2").innerHTML = computerChoiceString + "(" + computerChoice + ")";
+    if (userChoice < computerChoice) {
+        alert("jsdkfjslkdjflksdf")
+    }
 
 
-
-    document.getElementById("playedp1").innerHTML = 'Gekozen: ' + palyedp1
-    document.getElementById("playedp2").innerHTML = 'Gekozen: ' +  palyedp2
-    document.getElementById("ronde").innerHTML = 'Ronde: ' + ronde
 }
-
