@@ -2,7 +2,11 @@
 // 2: papier
 // 3: schaar
 
+var ronde = 0;
 var userChoice =0;
+var winner;
+var pointsU=0;
+var pointsC=0;
 function play() {
     //vraag de user voor input
     var userInput = prompt("wat speel jij?");
@@ -48,10 +52,64 @@ function play() {
 
     //schrijf alle variabelen naar de index.html
     document.getElementById("playedp1").innerHTML = userInput + "(" + userChoice + ")";
+    //print de computer keuze op het beeldscherm
     document.getElementById("playedp2").innerHTML = computerChoiceString + "(" + computerChoice + ")";
-    if (userChoice < computerChoice) {
-        alert("jsdkfjslkdjflksdf")
+
+    winnerR = checkWinner(userChoice, computerChoice);
+
+    WinnerLocation = document.getElementById("winnerstatus").innerHTML = winnerR;
+
+    ronde++;
+    document.getElementById('ronde').innerHTML = ronde;
+    if (winner == 1) {
+        pointsU ++;
+        document.getElementById("pp1").innerHTML = "Punten: " + pointsU;
+    }
+    if (winner == 0) {
+        pointsC ++;
+        document.getElementById("pp2").innerHTML = "Punten: " + pointsC;
+    }
+}
+
+
+function checkWinner(userChoice, computerChoice) {
+    if (userChoice == 2 && computerChoice == 1) {
+        winner = 1
+        return 'Jij wint!';
+    } 
+    if (userChoice == 3 && computerChoice == 2) {
+        winner = 0;
+        return 'computer wint!';
+    }
+    if (userChoice == 1 && computerChoice == 3) {
+        winner = 1;
+        return 'jij Wint!';
+    }
+    if (computerChoice == 2 && userChoice == 1) {
+        winner = 0;
+        return 'Computer wint!';
+    } 
+    if (computerChoice == 3 && userChoice == 2) {
+        winner = 0;
+        return 'computer wint!';
+    }
+    if (computerChoice == 1 && userChoice == 3) {
+        winner = 0;
+        return 'computer wint!';
+    }
+    if (computerChoice == userChoice) {
+        winner = 2;
+        return 'tie';
     }
 
-
 }
+
+function writeToHtml() {
+    
+}
+
+
+//if ((ComputerIn) % 3 + 1 == userInput)
+//    return "Win";
+//else if ((userInput) % 3 + 1 == ComputerIn)
+//    return "Lose"
