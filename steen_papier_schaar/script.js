@@ -7,6 +7,7 @@ var userChoice =0;
 var winner;
 var pointsU=0;
 var pointsC=0;
+var finalWinner =0;
 function play() {
     //vraag de user voor input
     var userInput = prompt("wat speel jij?");
@@ -19,13 +20,13 @@ function play() {
     //kijk wat de gebruiker in heeft gevuld
     switch (userInput) {
         case 'steen':
-            userChoice = 1;
+            userChoice = 'steen';
             break;
         case 'papier':
-            userChoice = 2;
+            userChoice = 'papier';
             break;
         case 'schaar':
-            userChoice = 3;
+            userChoice = 'schaar';
             break;
         default:
         alert("niet goed ingevuld, steen, papier, schaar");
@@ -51,11 +52,11 @@ function play() {
     }
 
     //schrijf alle variabelen naar de index.html
-    document.getElementById("playedp1").innerHTML = userInput + "(" + userChoice + ")";
+    document.getElementById("playedp1").innerHTML = userChoice;
     //print de computer keuze op het beeldscherm
-    document.getElementById("playedp2").innerHTML = computerChoiceString + "(" + computerChoice + ")";
+    document.getElementById("playedp2").innerHTML = computerChoiceString;
 
-    winnerR = checkWinner(userChoice, computerChoice);
+    winnerR = checkWinner(userChoice + computerChoiceString);
 
     WinnerLocation = document.getElementById("winnerstatus").innerHTML = winnerR;
 
@@ -69,47 +70,69 @@ function play() {
         pointsC ++;
         document.getElementById("pp2").innerHTML = "Punten: " + pointsC;
     }
-}
 
-
-function checkWinner(userChoice, computerChoice) {
-    if (userChoice == 2 && computerChoice == 1) {
-        winner = 1
-        return 'Jij wint!';
-    } 
-    if (userChoice == 3 && computerChoice == 2) {
-        winner = 0;
-        return 'computer wint!';
-    }
-    if (userChoice == 1 && computerChoice == 3) {
-        winner = 1;
-        return 'jij Wint!';
-    }
-    if (computerChoice == 2 && userChoice == 1) {
-        winner = 0;
-        return 'Computer wint!';
-    } 
-    if (computerChoice == 3 && userChoice == 2) {
-        winner = 0;
-        return 'computer wint!';
-    }
-    if (computerChoice == 1 && userChoice == 3) {
-        winner = 0;
-        return 'computer wint!';
-    }
-    if (computerChoice == userChoice) {
-        winner = 2;
-        return 'tie';
+    if (ronde == 3) {
+        if (pointsU < pointsC) {
+            finalWinner =1; //computer wint
+            document.getElementById('finalwinner').innerHTML = 'de computer heeft deze ronde gewonnen';
+        }
+        if (pointsU > pointsC) {
+            finalWinner =2; //User wint
+            document.getElementById('finalwinner').innerHTML = 'jij hebt deze ronde gewonnen';
+        }
+        if (pointsU == pointsC) {
+            finalWinner = 3;
+            document.getElementById('finalwinner').innerHTML = 'deze ronde is een Tie';
+        }
     }
 
 }
 
-function writeToHtml() {
-    
+
+function checkWinner(choices) {
+    switch (choices) {
+        case 'steensteen':
+            winner = 2;
+            return "Tie";
+        case 'steenschaar':
+            winner = 1;
+            return 'Jij wint!';
+        case 'steenpapier':
+            winner = 0;
+            return 'Computer wint!';
+        case 'schaarsteen':
+            winner = 0;
+            return'Computer wint!';
+        case 'schaarschaar':
+            winner = 2;
+            return'Tie';
+        case 'schaarpapier':
+            winner = 1;
+            return 'Jij wint!';
+        case 'papiersteen':
+            winner = 1;
+            return'Jij wint!';
+        case 'papierpapier':
+            winner = 2;
+            return 'Tie';
+        case 'papierschaar':
+            winner = 0;
+            return 'Computer wint!';
+    }
+
 }
-
-
-//if ((ComputerIn) % 3 + 1 == userInput)
-//    return "Win";
-//else if ((userInput) % 3 + 1 == ComputerIn)
-//    return "Lose"
+function resetGame() {
+    ronde = 0;
+    userChoice =0;
+    winner;
+    pointsU=0;
+    pointsC=0;
+    finalWinner =0;
+    document.getElementById("ronde").innerHTML = 0;
+    document.getElementById("playedp1").innerHTML = ' ';
+    document.getElementById("playedp2").innerHTML = ' ';
+    WinnerLocation = document.getElementById("winnerstatus").innerHTML = ' ';
+    document.getElementById("pp1").innerHTML = "Punten: " + 0;
+    document.getElementById("pp2").innerHTML = "Punten: " + 0;
+    document.getElementById('finalwinner').innerHTML = ' ';
+}

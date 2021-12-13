@@ -11,21 +11,23 @@
 <body>
     <div class="container-fluid p-5 bg-primary text-white text-center">
         <h1>Steen, papier, schaar</h1>
-        <div id="winnerstatus"></div>
+        <div class="text-center"><button class="btn btn-danger" onclick="resetGame()">Reset game</button></div>
     </div>
     <div class="container mt-5">
         <div class="text-center"><h4 id="ronde">Ronde: 0</h4></div>
         <div class="text-center"><button class="btn btn-primary" onclick="play()">speel</button></div>
+        <h1 class="text-center"><div id="winnerstatus"></div> </h1>
+        <h1 class="text-center"><div id="finalwinner"></div> </h1>
         <div class="card float-start" style="width: 18rem;">
             <img src="images/default.png" class="card-img-top" alt="default">
-            <div class="card-body">
+            <div class="card-body float-left">
                 <h5 class="card-title">Speler 1 (jij) <h5 id="playedp1"></h5></h5>
               <p class="card-text" id="pp1">Punten: 0</p>
             </div>
         </div>
         <div class="card float-end" style="width: 18rem;">
             <img src="images/default.png" class="card-img-top" alt="default">
-            <div class="card-body">
+            <div class="card-body float-right">
                 <h5 class="card-title">Speler 2 (computer) <h5 id="playedp2"></h5></h5>
               <p class="card-text" id="pp2">Punten: 0</p>
             </div>
