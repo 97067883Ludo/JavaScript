@@ -7,17 +7,38 @@
     <title>Document</title>
     <script>
         function checkForm() {
+            numNum1 = 0;
             number = document.getElementById('number').value;
-            if (number<0 || number>10) {
-                alert("Fuckyou");        
+            number1 = document.getElementById('number1').value;
+            number = parseInt(number);
+            number1 = parseInt(number1);
+            numNum1 = number + number1;
+            alert(numNum1);
+
+            
+            /*if (number<0 || number>10) {
+                alert("Het ingevulde getal is onjuist...");        
+            }else{
+                alert("Het ingevulde getal is juist...");
             }
+            if (number<0 || number>10) {
+                alert("Het ingevulde getal is onjuist...");        
+            }else{
+                alert("Het ingevulde getal is juist...");
+            }*/
         }
     </script>
 </head>
 <body>
     <h1>test</h1>
     <form action="" method="post">
+        <label for="number">Nummer</label>
+        <br />
         <input type="number" name="number" value="" id="number">
+        <br />
+        <label for="number1">Nummer1</label>
+        <br />
+        <input type="number" name="number" value="" id="number1">
         <button type="submit"  onclick="checkForm()">verstuur</button>
     </form>
 </body>

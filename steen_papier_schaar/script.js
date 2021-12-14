@@ -9,6 +9,10 @@ var pointsU=0;
 var pointsC=0;
 var finalWinner =0;
 function play() {
+
+    if (ronde == 3) {
+        return;
+    }
     //vraag de user voor input
     var userInput = prompt("wat speel jij?");
     //als de gebruiker niks heeft ingevuld return.
