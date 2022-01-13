@@ -4,8 +4,11 @@ card1Clicked = 0;
 card2Clicked = 0;
 card1ClickedNummer =0;
 card2ClickedNummer =0;
+numberOfClicks = 0;
 document.getElementById("punten").innerHTML = "Punten: " + punten;
 card1 = 'images/cow.webp';
+var audio1 = new Audio('Card-flip-sound-effect.mp3');
+var audio2 = new Audio('Card-flip-sound-effect.mp3');
 
 
 function cardSelected(cardId, cardNummer) {
@@ -16,20 +19,28 @@ function cardSelected(cardId, cardNummer) {
     userClick = 1;
     card1ClickedNummer = cardNummer;
     card1Clicked = cardId;
+    numberOfClicks += 1;
+    document.getElementById("clicks").innerHTML = "Aantal click's: " + numberOfClicks;
+    audio1.play();
     }else{
         card2ClickedNummer = cardNummer;
         userClick = 0;
         card2Clicked = cardId;
+        numberOfClicks += 1;
+        document.getElementById("clicks").innerHTML = "Aantal click's: " + numberOfClicks;
+        audio2.play();
         if (card1Clicked == card2Clicked) {
             punten++;
             document.getElementById("punten").innerHTML = "Punten: " + punten;
         }else{
-            card1Clicked = 0;
-            card2Clicked = 0;
-            document.getElementById(card1ClickedNummer).src = "images/default.png";
-            document.getElementById(card2ClickedNummer).src = "images/default.png";
-            document.getElementById(card2ClickedNummer).disabled = false;
-            document.getElementById(card1ClickedNummer).disabled = false;
+            setTimeout(function() {
+                card1Clicked = 0;
+                card2Clicked = 0;
+                document.getElementById(card1ClickedNummer).src = "images/default.png";
+                document.getElementById(card2ClickedNummer).src = "images/default.png";
+                document.getElementById(card2ClickedNummer).disabled = false;
+                document.getElementById(card1ClickedNummer).disabled = false;
+            }, 1000);
         }
     }
     if (punten == 4) {
@@ -44,6 +55,8 @@ function resetGame() {
     card2Clicked = 0;
     card1ClickedNummer =0;
     card2ClickedNummer =0;
+    numberOfClicks = 0;
+    document.getElementById("clicks").innerHTML = "Aantal click's: " + numberOfClicks;
     document.getElementById("resetGame").style.display = "none";
     document.getElementById("punten").innerHTML = "Punten: " + punten;
     for (let i = 1; i <= 8; i++) {
